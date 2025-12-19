@@ -4,6 +4,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,15 +16,53 @@
 </head>
 
 <body class="grdBox">
-    <div>
+    <div class="content">
         <div class="card">
             <div class="card__command">
-                <h1 class="card__text">最終ミッション</h1>
-            
-                <p class="card__text">G's（旧G's ACADEMY）が誕生した<br>年月日を正確にスタッフに伝えろ！<br>（今回はテスト加納のところへどうぞ）</p>
+                <h1 class="card__text">MISSION：2</h1>
+                <p class="card__text">
+                    G'sの創立年月日を8ケタの数字（yyyymmdd）で入力せよ！<br>
+                    ※ヒントは校舎の中に・・・
+                </p>
+
+                <div id="password-area" style="margin-top:16px;">
+                    <button class="btn" onclick="checkPassword()">
+                        パスワードを入力する
+                    </button>
+                </div>
+
+                <!-- 正解者だけ見えるエリア -->
+                <div id="form-area" style="display:none; margin-top:24px;">
+                    <p class="card__text">
+                        🎉 正解！抽選フォームはこちら 🎉
+                    </p>
+
+                    <iframe
+                        src="https://docs.google.com/forms/d/e/1FAIpQLScofzt6vFt5rgfjZP3tKX1A_PcSQZmvHm7velm9QhCRxh1UIA/viewform?embedded=true"
+                        width="640" height="760" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+                </div>
             </div>
         </div>
-</body>
+    </div>
+    <script>
+        function checkPassword() {
+            var input = prompt("パスワードを入力してください　※数字のみ8ケタ（yyyymmdd）", "");
+            if (input == null) return;
 
+            if (!/^[0-9]+$/.test(input)) {
+                alert("半角数字のみを入力してください。");
+                return;
+            }
+
+            if (input === "20150411") {
+                // 正解
+                document.getElementById("password-area").style.display = "none";
+                document.getElementById("form-area").style.display = "block";
+            } else {
+                alert("パスワードが違います！");
+            }
+        }
+    </script>
+</body>
 
 </html>

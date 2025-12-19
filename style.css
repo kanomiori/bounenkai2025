@@ -1,15 +1,20 @@
 @charset "utf-8";
 
-.body {
+/* ✅ .body だと効かないので body にする */
+body {
     font-family: 'Noto Sans JP', sans-serif;
+    margin: 0;
 }
 
-
+/* 画面中央寄せは維持しつつ、スマホでもはみ出さないように */
 .grdBox {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 98vh;
+    min-height: 100svh;
+    /* iPhoneのアドレスバー変動に強い */
+    padding: 16px;
+    /* 端末の左右余白 */
     background: linear-gradient(90deg, #7097e7 0%, #2b213b 50%, #ab4f60 80%, #7097e7 100%);
     background-size: 200% 200%;
     animation: bggrdAnime 25s ease infinite;
@@ -29,31 +34,24 @@
     }
 }
 
-span.password {
-    font-size: 150%;
-    font-family: monospace;
-    font-weight: bold;
-    margin: 0px 0.3em;
-}
-
-input[type=button] {
-    font-size: 125%;
-    margin: 2em;
-}
-
 .content {
-    width: 750px
+    width: 100%;
+    max-width: 750px;
+    /* PCでは従来サイズに近い */
 }
 
+/* ✅ 固定幅→可変幅へ */
 .card {
-    height: 350px;
-    width: 750px;
+    width: 100%;
+    max-width: 750px;
+    min-height: 240px;
+    /* スマホで高さ詰め */
     position: relative;
     display: flex;
     justify-content: center;
 }
 
-
+/* 中身はそのまま、スマホで詰める */
 .card__command {
     font-family: 'Noto Sans JP', sans-serif;
     border: 1px solid #fff;
@@ -63,40 +61,52 @@ input[type=button] {
     text-align: center;
     backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
     -webkit-backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
-    content: "";
     height: 100%;
-    position: absolute;
     width: 100%;
     padding: 20px;
+    box-sizing: border-box;
 }
-
 
 p.card__text {
     margin: 0 auto;
     padding: 10px;
-    font-size: 20px;
+    font-size: 18px;
+    /* 少しだけ小さく */
     color: #ffffff;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 h1.card__text {
-    margin: 16px;
-    font-size: 36px;
+    margin: 12px 8px;
+    font-size: 28px;
+    /* スマホでの見切れ防止 */
     color: #ffffff;
+    line-height: 1.25;
 }
 
+/* ボタンも画面幅に追従 */
 .btn {
-    width: 200px;
-    height: 60px;
+    width: min(320px, 90%);
+    height: 56px;
     padding: 0;
     background: #fff;
-    border-radius: 5px;
-    opacity: 0.5;
+    border-radius: 8px;
+    opacity: 0.75;
     border: none;
-    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
     box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
 }
 
 .btn:hover {
     background: #7097e7;
+}
+
+/* さらに小さい端末向け */
+@media (max-width: 360px) {
+    h1.card__text {
+        font-size: 24px;
+    }
+
+    p.card__text {
+        font-size: 16px;
+    }
 }
