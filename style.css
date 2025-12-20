@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-/* ✅ .body だと効かないので body にする */
 body {
     font-family: 'Noto Sans JP', sans-serif;
     margin: 0;
@@ -12,10 +11,35 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100svh;
-    /* iPhoneのアドレスバー変動に強い */
     padding: 16px;
     /* 端末の左右余白 */
     background: linear-gradient(90deg, #7097e7 0%, #2b213b 50%, #ab4f60 80%, #7097e7 100%);
+    background-size: 200% 200%;
+    animation: bggrdAnime 25s ease infinite;
+}
+
+@keyframes bggrdAnime {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 150% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.grdBox--mission2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+    padding: 16px;
+    /* 端末の左右余白 */
+    background: linear-gradient(90deg, #55ab59 0%, #213b23 50%, #944fab 80%, #55ab59 100%);
     background-size: 200% 200%;
     animation: bggrdAnime 25s ease infinite;
 }
